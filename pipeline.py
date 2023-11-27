@@ -335,16 +335,16 @@ if __name__=="__main__":
     # data params
     data_params = dict( 
         year = "2023",
-        month = "07", # only works within one month of one year
+        month = "06", # only works within one month of one year
         start_day_inc = "1",
         stop_day_inc = "1",
         step_day = 1,
         start_hour_inc = "00", # 00-23
         stop_hour_inc = "09", # 00-23
         step_hour = 1,
-        sfc_vars = [],
-        pl_vars = ["u_component_of_wind", "v_component_of_wind"],
-        pl_levels = ["850"]
+        sfc_vars = ["lwe_thickness_of_atmosphere_mass_content_of_water_vapor"],
+        pl_vars = [],
+        pl_levels = []
     )
     
     # Where to save the data, images, and videos.
@@ -361,9 +361,9 @@ if __name__=="__main__":
     output_stem = output_stem,
     output_stem_explain = r"yYYYY_mMM_diDD_djDD_hmHH_hnHH_{pl,sfc,merged}.nc, where YYYY is the year, MM is the month, DD is the day (a=start, b=stop) inclusive, HH is the hour (a=start, b=stop) inclusive, final tag indicates whether using pl (pressure level data) or sfc (surface data) or merged (combined pl and sfc).",
     output_ds_path = working_dir / f'{output_stem}_merged.nc', # save the output dataset to a netcdf file or False / None to not save
-    use_ds = "/Users/joshuaelms/Desktop/github_repos/atmospheric-science/Random/earth_vis/data/ERA5_raw/y2023_m10_da24_db25_ha00_hb23.nc", # provide a path to a dataset to use instead of pulling data from cdsapi, or False to pull data from cdsapi
+    use_ds = False, # provide a path to a dataset to use instead of pulling data from cdsapi, or False to pull data from cdsapi
     rm_originals = True, # delete the original .nc files after merging and processing
-    rm_images = False, # delete the images after creating the video
+    rm_images = True, # delete the images after creating the video
     img_dir = working_dir / 'frames', # directory to save images to
     vid_dir = working_dir / 'videos', # directory to save videos to
     
@@ -375,6 +375,7 @@ if __name__=="__main__":
         "pv1000" : dict(pref_cmap = "viridis", units = "PVU"),
         "t2m": dict(pref_cmap = "magma", units = "deg K"),
         "tcc": dict(pref_cmap = "Greys", units = "%"),
+        "tcwv": dict(pref_cmap = "viridis", units = "kg/m^2"),
         "wind50": dict(pref_cmap = "viridis", units = "m/s"),
         "wind500": dict(pref_cmap = "viridis", units = "m/s"),
         "wind850": dict(pref_cmap = "viridis", units = "m/s"),
@@ -397,6 +398,7 @@ if __name__=="__main__":
         divergence = "d",
         relative_humidity = "r",
         fraction_of_cloud_cover = "cc",
+        lwe_thickness_of_atmosphere_mass_content_of_water_vapor = "tcwv"
     ),
     # end paramdict
     )
