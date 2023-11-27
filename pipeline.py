@@ -132,6 +132,7 @@ def postprocessing(sfc_request, pl_request, output_path, rm_originals, lookup_va
             
         pl_levels = pl_request['request']['pressure_level']
         multi_level = len(pl_levels) > 1 # if there are multiple levels, we can't use the level dimension (not generated)
+
         for level in pl_levels:
             for var in pl_request['request']["variable"]:
                 short_var = lookup_variables[var]
@@ -139,7 +140,7 @@ def postprocessing(sfc_request, pl_request, output_path, rm_originals, lookup_va
                     continue # ignore, we'll process these later
                 
                 if multi_level:
-                    out_ds[f'{short_var}{level}'] = pl_ds[short_var].sel(level=level)
+                    out_ds[f'{short_var}{level}'] = pl_ds[short_var].sel(level=int(level))
                     
                 else: 
                     out_ds[f'{short_var}{level}'] = pl_ds[short_var]
@@ -147,7 +148,7 @@ def postprocessing(sfc_request, pl_request, output_path, rm_originals, lookup_va
             # Add the new data variables to the merged dataset
             if windflag:
                 if multi_level:
-                    out_ds[f'wind{level}'] = (pl_ds.u.sel(level=level)**2 + pl_ds.v.sel(level=level)**2)**0.5
+                    out_ds[f'wind{level}'] = (pl_ds.u.sel(level=level)**2 + pl_ds.v.sel(level=int(level))**2)**0.5
                     
                 else:
                     out_ds[f'wind{level}'] = (pl_ds.u**2 + pl_ds.v**2)**0.5
@@ -188,7 +189,7 @@ def fmt_time_str(t, fmt="%Y-%m-%d %Hz"):
     """For some reason, this works."""
     return t.astype('datetime64[s]').item().strftime(fmt)
     
-def plot_frames(ds, output_dir, channel_metadata, border_color, plot_metadata, default_cmap_name = "viridis", metadata_pos = "upper-right"):
+def plot_frames(ds, output_dir, channel_metadata, border_color, plot_metadata, metadata_pos, default_cmap_name = "viridis"):
     """
     Plot frames of video for each channel and time.
     
@@ -301,7 +302,7 @@ def main(
         ds = postprocessing(sfc_request, pl_request, output_ds_path, rm_originals, lookup_variables)
         
     # plot frames of video
-    plot_frames(ds, img_dir, channel_metadata, border_color, plot_metadata, metadata_pos)
+    plot_frames(ds, img_dir, channel_metadata, border_color, plot_metadata, metadata_pos=metadata_pos)
     
     # create video
     logging.info("Creating videos")
@@ -337,14 +338,14 @@ if __name__=="__main__":
         year = "2023",
         month = "06", # only works within one month of one year
         start_day_inc = "1",
-        stop_day_inc = "1",
+        stop_day_inc = "7",
         step_day = 1,
         start_hour_inc = "00", # 00-23
-        stop_hour_inc = "09", # 00-23
+        stop_hour_inc = "23", # 00-23
         step_hour = 1,
-        sfc_vars = ["lwe_thickness_of_atmosphere_mass_content_of_water_vapor"],
-        pl_vars = [],
-        pl_levels = []
+        sfc_vars = ["total_column_water_vapour", "surface_pressure"],
+        pl_vars = ["geopotential", "temperature", "u_component_of_wind", "v_component_of_wind", "divergence"],
+        pl_levels = [500, 850, 1000]
     )
     
     # Where to save the data, images, and videos.
@@ -382,7 +383,7 @@ if __name__=="__main__":
         "wind1000": dict(pref_cmap = "viridis", units = "m/s"),
     },
     border_color = 'black',
-    fps = '24', # frames per second for the video, as a string,
+    fps = '18', # frames per second for the video, as a string,
     plot_metadata = True,
     metadata_pos = "upper-right", # if plot_metadata is True, where to plot the metadata (upper-right, upper-left, lower-right, lower-left)
     
@@ -398,7 +399,6 @@ if __name__=="__main__":
         divergence = "d",
         relative_humidity = "r",
         fraction_of_cloud_cover = "cc",
-        lwe_thickness_of_atmosphere_mass_content_of_water_vapor = "tcwv"
     ),
     # end paramdict
     )
