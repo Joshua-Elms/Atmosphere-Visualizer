@@ -10,18 +10,18 @@ data_params = dict(
     year = "2023",
     month = "11", # only works within one month of one year (can't download June-July data, for example)
     start_day_inc = "10",
-    stop_day_inc = "10",
+    stop_day_inc = "17",
     step_day = 1,
     start_hour_inc = "00", # 00-23
-    stop_hour_inc = "02", # 00-23
+    stop_hour_inc = "23", # 00-23
     step_hour = 1,
     sfc_vars = ["total_column_water_vapour"],
-    pl_vars = [],
-    pl_levels = []
+    pl_vars = ["u_component_of_wind", "v_component_of_wind"],
+    pl_levels = [500, 1000]
 )
 
 # Where to save the data, images, and videos.
-working_dir = pathlib.Path('/Users/joshuaelms/Desktop/github_repos/Atmosphere-Visualizer/example_run/')
+working_dir = pathlib.Path('output/')
 
 # Output stem for the data
 output_stem = f'y{data_params["year"]}_m{data_params["month"]}_da{data_params["start_day_inc"]}_db{data_params["stop_day_inc"]}_ha{data_params["start_hour_inc"]}_hb{data_params["stop_hour_inc"]}'
@@ -34,7 +34,7 @@ working_dir = working_dir,
 output_stem = output_stem,
 output_stem_explain = r"yYYYY_mMM_diDD_djDD_hmHH_hnHH_{pl,sfc,merged}.nc, where YYYY is the year, MM is the month, DD is the day (a=start, b=stop) inclusive, HH is the hour (a=start, b=stop) inclusive, final tag indicates whether using pl (pressure level data) or sfc (surface data) or merged (combined pl and sfc).",
 output_ds_path = working_dir / f'{output_stem}_merged.nc', # save the output dataset to a netcdf file or False / None to not save
-use_ds = False, # provide a path to a dataset to use instead of pulling data from cdsapi, or False to pull data from cdsapi
+use_ds = None, # provide a path to a dataset to use instead of pulling data from cdsapi, or False to pull data from cdsapi
 rm_originals = True, # delete the original .nc files after merging and processing
 rm_images = True, # delete the images after creating the video
 img_dir = working_dir / 'frames', # directory to save images to

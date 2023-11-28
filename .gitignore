@@ -159,11 +159,8 @@ cython_debug/
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 #.idea/
 
-# avoid uploading large data files
-*.nc
-
-# avoid uploading large numbers of images
-*.png
+# avoid uploading files
+output/
 
 # for mac
 .DS_Store
