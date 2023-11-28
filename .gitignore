@@ -161,6 +161,7 @@ cython_debug/
 
 # avoid uploading files
 output/
+large_output/
 
 # for mac
 .DS_Store

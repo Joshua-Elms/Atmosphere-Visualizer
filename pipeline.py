@@ -237,7 +237,7 @@ def plot_frames(ds, output_dir, channel_metadata, border_color, plot_metadata, m
             
             # clear axes and fill with black outside of data
             ax.axis('off')
-            ax.set_position([0, 0.1, 1, 0.8]) # (left, bottom, width, height)
+            ax.set_position([0, 0.08, 1, 0.8]) # (left, bottom, width, height), could use [0, 0.1, 1, 0.8] for symmetry
             
             # plot metadata
             metadata_pos_options = {
@@ -348,7 +348,7 @@ if __name__=="__main__":
         pl_levels = [500, 850, 1000]
     )
     
-    # Where to save the data, images, and videos.
+    # Where to save the data, images, and videos. Please provide an absolute path, not a relative path.
     working_dir = pathlib.Path('/Users/joshuaelms/Desktop/github_repos/Atmosphere-Visualizer/output/example')
     
     # Output stem for the data
