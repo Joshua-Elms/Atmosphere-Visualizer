@@ -160,10 +160,10 @@ cython_debug/
 #.idea/
 
 # avoid uploading large data files
-output/*.nc
+*.nc
 
 # avoid uploading large numbers of images
-output/*.png
+*.png
 
 # for mac
 .DS_Store

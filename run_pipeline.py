@@ -10,14 +10,14 @@ data_params = dict(
     year = "2023",
     month = "11", # only works within one month of one year (can't download June-July data, for example)
     start_day_inc = "10",
-    stop_day_inc = "17",
+    stop_day_inc = "10",
     step_day = 1,
     start_hour_inc = "00", # 00-23
-    stop_hour_inc = "23", # 00-23
+    stop_hour_inc = "02", # 00-23
     step_hour = 1,
     sfc_vars = ["total_column_water_vapour"],
-    pl_vars = ["u_component_of_wind", "v_component_of_wind"],
-    pl_levels = [500, 1000]
+    pl_vars = [],
+    pl_levels = []
 )
 
 # Where to save the data, images, and videos.
