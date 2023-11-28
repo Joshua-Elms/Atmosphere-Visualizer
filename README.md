@@ -8,9 +8,13 @@ https://github.com/Joshua-Elms/Atmosphere-Visualizer/assets/91396382/23c8055c-25
 ### Dependencies
 
 1. CDS API - register for a free account [here](https://cds.climate.copernicus.eu/user/register?destination=%2F%23!%2Fhome) and set up your `$HOME/.cdsapirc` file according to the instructions [here](https://cds.climate.copernicus.eu/api-how-to).
-2. Conda Environment - build the necessary conda environment from the requirements file using the following command: `conda create -f environment.yml`. Enter the environment with `conda activate atmos-vis`.
-3. Memory - ensure you have enough RAM to load and process the data you are requesting. One month of hourly data for a 4 byte variable will be about 4 GB.
-4. Time - short run (a few hours of data) will likely run in seconds or minutes, but full-length visualizations of month of data for multiple variables may take a few hours, especially if the CDS queue is long. Check the queue [here](https://cds.climate.copernicus.eu/live/queue).
+2. Conda Environment - build the necessary conda environment from the requirements file using the following command: `conda create -f environment.yml`. Enter the environment with `conda activate atmos-vis`. In the likely event that the very particular system-dependencies included in the `environment.yml` file do not lead to a functional environment for you, simply enter the following commands to build the environment on your own:
+   1. `conda create -n atmos-vis`
+   2. `conda activate atmos-vis`
+   3. `conda install xarray ffmpeg -c anaconda`
+   4. `conda install matplotlib netcdf scipy -c conda-forge`
+4. Memory - ensure you have enough RAM to load and process the data you are requesting. One month of hourly data for a 4 byte variable will be about 4 GB.
+5. Time - short run (a few hours of data) will likely run in seconds or minutes, but full-length visualizations of month of data for multiple variables may take a few hours, especially if the CDS queue is long. Check the queue [here](https://cds.climate.copernicus.eu/live/queue).
 
 ### Usage
 
