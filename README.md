@@ -3,7 +3,19 @@
 ### Introduction
 This tool creates visualizations of the Earth's atmosphere. The data (Hersbach, H. et al., (2018)) comes from the Copernicus Climate Change Service Climate Data Store (CDS) and can be freely accessed by setting up a CDS API account. The individual video frames are plotted in Python and concatenated into a video using FFmpeg.
 
-https://github.com/Joshua-Elms/Atmosphere-Visualizer/assets/91396382/23c8055c-2525-4c45-a905-75f0125aadeb
+
+
+https://github.com/Joshua-Elms/Atmosphere-Visualizer/assets/91396382/68a60315-7f37-4515-b32f-1d94386cf1c4
+
+
+
+https://github.com/Joshua-Elms/Atmosphere-Visualizer/assets/91396382/06e5a763-b389-478a-a8c5-bfbfd982d90e
+
+
+
+https://github.com/Joshua-Elms/Atmosphere-Visualizer/assets/91396382/1c1617a2-78a3-49b9-8b13-7615b7a3bf3c
+
+
 
 ### Dependencies
 
