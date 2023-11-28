@@ -12,7 +12,7 @@ https://github.com/Joshua-Elms/Atmosphere-Visualizer/assets/91396382/23c8055c-25
    1. `conda create -n atmos-vis`
    2. `conda activate atmos-vis`
    3. `conda install xarray ffmpeg -c anaconda`
-   4. `conda install cdsapi matplotlib netcdf scipy -c conda-forge`
+   4. `conda install cdsapi matplotlib netcdf4 scipy -c conda-forge`
 4. Memory - ensure you have enough RAM to load and process the data you are requesting. One month of hourly data for a 4 byte variable will be about 4 GB.
 5. Time - short run (a few hours of data) will likely run in seconds or minutes, but full-length visualizations of month of data for multiple variables may take a few hours, especially if the CDS queue is long. Check the queue [here](https://cds.climate.copernicus.eu/live/queue).
 
