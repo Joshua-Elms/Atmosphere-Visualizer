@@ -4,17 +4,13 @@
 This tool creates visualizations of the Earth's atmosphere. The data (Hersbach, H. et al., (2018)) comes from the Copernicus Climate Change Service Climate Data Store (CDS) and can be freely accessed by setting up a CDS API account. The individual video frames are plotted in Python and concatenated into a video using FFmpeg.
 
 
-
-https://github.com/Joshua-Elms/Atmosphere-Visualizer/assets/91396382/68a60315-7f37-4515-b32f-1d94386cf1c4
-
-
-
-https://github.com/Joshua-Elms/Atmosphere-Visualizer/assets/91396382/06e5a763-b389-478a-a8c5-bfbfd982d90e
-
-
+### Examples
 
 https://github.com/Joshua-Elms/Atmosphere-Visualizer/assets/91396382/1c1617a2-78a3-49b9-8b13-7615b7a3bf3c
 
+https://github.com/Joshua-Elms/Atmosphere-Visualizer/assets/91396382/06e5a763-b389-478a-a8c5-bfbfd982d90e
+
+https://github.com/Joshua-Elms/Atmosphere-Visualizer/assets/91396382/68a60315-7f37-4515-b32f-1d94386cf1c4
 
 
 ### Dependencies
@@ -45,7 +41,7 @@ Set the parameters to their desired values in `run_pipeline.py`, then activate y
 | `channel_metadata` | Used to pass visualization information to the pipeline; see [matplotlib colormaps](https://matplotlib.org/stable/users/explain/colors/colormaps.html) for more cmap options                                                                                                                                                                                                            |
 | `border_color`     | Defaults to `"black"`; use only valid matplotlib color strings. Background color for the video.                                                                                                                                                                                                                                                                                        |
 | `fps`              | Framerate of the output video as a string (ex. `"12"`)                                                                                                                                                                                                                                                                                                                                 |
-| `plot_metadata`    | Whether to plot the variable name and timestamp in the corner of the video.                                                                                                                                                                                                                                                                                                            |
+| `plot_metadata`    | Whether to plot the variable name and timestamp in the corner of the video. The program could be extended to include a colorbar and units for scientific rigor.                                                                                                                                                                                                                                                                                                           |
 | `metadata_pos`     | If `plot_metadata` is True, can be `"(upper/lower)-(right/left)"` (ex. `"upper-right"`)                                                                                                                                                                                                                                                                                                |
 | `lookup_variables` | Pressure-level data from the CDS uses long and short names for each variable. This dictionary is formatted as {long : short} to allow the program to track variables properly. If requesting PL variables not in this dict, it's necessary to add them from [this page](https://confluence.ecmwf.int/display/CKB/ERA5%3A+data+documentation#heading-Table9pressurelevelparametersinstantaneous) |
 
