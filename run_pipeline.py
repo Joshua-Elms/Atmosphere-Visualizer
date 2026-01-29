@@ -34,7 +34,7 @@ working_dir = working_dir,
 output_stem = output_stem,
 output_stem_explain = r"yYYYY_mMM_diDD_djDD_hmHH_hnHH_{pl,sfc,merged}.nc, where YYYY is the year, MM is the month, DD is the day (a=start, b=stop) inclusive, HH is the hour (a=start, b=stop) inclusive, final tag indicates whether using pl (pressure level data) or sfc (surface data) or merged (combined pl and sfc).",
 output_ds_path = working_dir / f'{output_stem}_merged.nc', # save the output dataset to a netcdf file or False / None to not save
-use_ds = "katrina/y2005_m08_da01_db30_ha00_hb23_sfc.nc", # provide a path to a dataset to use instead of pulling data from cdsapi, or False to pull data from cdsapi
+use_ds = None, # provide a path to a dataset to use instead of pulling data from cdsapi, or False to pull data from cdsapi
 rm_originals = True, # delete the original .nc files after merging and processing
 rm_images = True, # delete the images after creating the video
 img_dir = working_dir / 'frames', # directory to save images to
